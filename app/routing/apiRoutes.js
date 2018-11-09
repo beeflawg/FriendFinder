@@ -33,6 +33,9 @@ module.exports = function (app) {
         num = totalArr[totalArr.length - 1];
         console.log(num);
 
+        //compare totalArr to num to get closest
+        //after getting closest, display information related to that profile in the modal
+
     });
 
 };
