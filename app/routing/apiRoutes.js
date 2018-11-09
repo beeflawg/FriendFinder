@@ -13,30 +13,36 @@ var friendsData = require("../data/friends");
 // ROUTING
 // ===============================================================================
 
-module.exports = function(app) {
-  // API GET Requests
-  // Below code handles when users "visit" a page.
-  // In each of the below cases when a user visits a link
-  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
-  // ---------------------------------------------------------------------------
+module.exports = function (app) {
+    // API GET Requests
+    // Below code handles when users "visit" a page.
+    // In each of the below cases when a user visits a link
+    // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
+    // ---------------------------------------------------------------------------
 
-  app.get("/api/friends", function(req, res) {
-    res.json(friendsData);
-  });
+    app.get("/api/friends", function (req, res) {
+        res.json(friendsData);
+    });
 
 
-  app.post("/api/friends", function(req, res) {
-      friendsData.push(req.body);
-      res.json(true);
-      
-    //   for (var i = 0; i < friendsData.length; i++) {
-    //     num = friendsData[i].scores;
-    //     function getSum(total, num) {
-    //         return total + num;
-    //     }
+    app.post("/api/friends", function (req, res) {
+        friendsData.push(req.body);
+        res.json(true);
 
-    //   }
-    
-  });
+        for (var i = 0; i < friendsData.length; i++) {
+            console.log(friendsData[i].scores);
+         
+            var a = friendsData[i].scores
+            var result = a.map(function (x) {
+                return parseInt(x, 10);
+            });
+           
+            console.log(result);
+            var total = (result.reduce((x, y) => x + y))
+            console.log(total);
+
+        }
+
+    });
 
 };
